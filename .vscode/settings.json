@@ -1,0 +1,6 @@
+{
+    "godot_tools.editor_path": "c:\\Users\\tomas\\Desktop\\godot\\Godot_v4.1-stable_mono_win64\\Godot_v4.1-stable_mono_win64\\Godot_v4.1-stable_mono_win64.exe",
+    "C_Cpp.autocompleteAddParentheses": true,
+    "csharp.inlayHints.enableInlayHintsForImplicitObjectCreation": true,
+    "csharp.inlayHints.enableInlayHintsForImplicitVariableTypes": true
+}

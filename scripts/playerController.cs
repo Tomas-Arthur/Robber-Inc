@@ -32,7 +32,7 @@ public partial class playerController : CharacterBody2D
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
-
+		
 		Velocity = velocity;
 		MoveAndSlide();
 	}
