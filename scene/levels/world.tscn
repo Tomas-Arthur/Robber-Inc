@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bofdn0b45y1rb"]
+
+[ext_resource type="Texture2D" uid="uid://d0t6ljo5vmar3" path="res://icon.svg" id="1_g0c22"]
+[ext_resource type="PackedScene" uid="uid://dh5nax8rilysc" path="res://scene/player.tscn" id="2_fluuv"]
+
+[node name="world" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1466.5, 924)
+scale = Vector2(23.9141, 15.4375)
+texture = ExtResource("1_g0c22")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1525, 915)
+zoom = Vector2(0.32, 0.32)
+
+[node name="player" parent="." instance=ExtResource("2_fluuv")]
