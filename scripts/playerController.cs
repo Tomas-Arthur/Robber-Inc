@@ -11,8 +11,9 @@ public partial class playerController : CharacterBody2D
     public float stealthSpeed = 150f;
 
 	[Export]
-	public double stamina = 1000f;
+	public int stamina = 1000;
 	[Export]
+<<<<<<< HEAD
 	public double staminaMax = 1000;
 
 	[Export]
@@ -27,6 +28,9 @@ public partial class playerController : CharacterBody2D
 
 	[Export]
 	public bool hiding = false;
+=======
+	public int staminaMax = 1000;
+>>>>>>> parent of 3b07ce7 (add stamina system + affichage dans le terminal)
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -48,6 +52,7 @@ public partial class playerController : CharacterBody2D
 			//on sprint que si la stamina n'est pas null
 			if (Input.IsActionPressed("sprint") && stamina > 0)
 			{
+<<<<<<< HEAD
 				twoSecond = 2;
 				velocity = direction * sprintSpeed ;
 				if(oneSecond - delta < 0)
@@ -60,6 +65,9 @@ public partial class playerController : CharacterBody2D
 					oneSecond -= delta;
 				}
 				// on affiche l'etat de la stamina dans le teminal
+=======
+				velocity = direction * sprintSpeed;
+>>>>>>> parent of 3b07ce7 (add stamina system + affichage dans le terminal)
 				GD.Print(" stamina : " + stamina + " / " + staminaMax);
 			}
 			// si on presse la touche de marche on change la vitesse de deplacement par celle de la marche
@@ -77,14 +85,20 @@ public partial class playerController : CharacterBody2D
             }
             else
 			{
+<<<<<<< HEAD
 				velocity = direction * Speed ;
                 twoSecond -= delta;
             }
+=======
+				velocity = direction * Speed;
+			}
+>>>>>>> parent of 3b07ce7 (add stamina system + affichage dans le terminal)
 		}
         else
 
         {
 			velocity =Vector2.Zero;
+<<<<<<< HEAD
             twoSecond -= delta;
         }
 
@@ -117,6 +131,10 @@ public partial class playerController : CharacterBody2D
 				oneSecond -= delta;
 			}
 		}
+=======
+		}
+		
+>>>>>>> parent of 3b07ce7 (add stamina system + affichage dans le terminal)
 		Velocity = velocity;
 		MoveAndSlide();
 
