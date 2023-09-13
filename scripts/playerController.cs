@@ -23,6 +23,7 @@ public partial class playerController : CharacterBody2D
 	public double timeToRecupStaminaMax;
 
     public double oneSecond = 1f;
+	public double twoSecond = 2;
 
 	[Export]
 	public bool hiding = false;
@@ -47,6 +48,7 @@ public partial class playerController : CharacterBody2D
 			//on sprint que si la stamina n'est pas null
 			if (Input.IsActionPressed("sprint") && stamina > 0)
 			{
+				twoSecond = 2;
 				velocity = direction * sprintSpeed ;
 				if(oneSecond - delta < 0)
 				{
@@ -64,23 +66,27 @@ public partial class playerController : CharacterBody2D
 			else if (Input.IsActionPressed("walk"))
 			{
 				velocity = direction * stealthSpeed;
+				twoSecond -= delta;
 			}
 			// si caché ne se deplace pas 
             else if (hiding)
             {
                 velocity = Vector2.Zero;
-				//GD.Print("i am hide ");
+                twoSecond -= delta;
+                //GD.Print("i am hide ");
             }
             else
 			{
 				velocity = direction * Speed ;
-			}
+                twoSecond -= delta;
+            }
 		}
         else
 
         {
 			velocity =Vector2.Zero;
-		}
+            twoSecond -= delta;
+        }
 
 		// gestion recuperation de la stamina une fois arrivé a zero
 		// a ameliorer pour la restauré dés que le joueur ne cours plus 
@@ -98,7 +104,19 @@ public partial class playerController : CharacterBody2D
 
             }
 		}
-
+		if(twoSecond <= 0 && stamina > 0)
+		{
+			if(oneSecond - delta < 0)
+			{
+				stamina += 10;
+				oneSecond = 1;
+                GD.Print(" stamina : " + stamina + " / " + staminaMax);
+            }
+			else
+			{
+				oneSecond -= delta;
+			}
+		}
 		Velocity = velocity;
 		MoveAndSlide();
 
