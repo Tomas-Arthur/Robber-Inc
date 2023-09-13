@@ -3,11 +3,20 @@ using System;
 
 public partial class playerController : CharacterBody2D
 {
-	public const float Speed = 300.0f;
-	
+	[Export]
+	public  float Speed = 300.0f;
+    [Export]
+    public float sprintSpeed = 600.0f;
+    [Export]
+    public float stealthSpeed = 150f;
 
-	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	[Export]
+	public int stamina = 1000;
+	[Export]
+	public int staminaMax = 1000;
+
+    // Get the gravity from the project settings to be synced with RigidBody nodes.
+    public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -23,11 +32,29 @@ public partial class playerController : CharacterBody2D
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		if (direction != Vector2.Zero)
 		{
-			velocity.X = direction.X * Speed;
+			if (Input.IsActionPressed("sprint") && stamina > 0)
+			{
+				velocity = direction * sprintSpeed;
+				GD.Print(" stamina : " + stamina + " / " + staminaMax);
+			}
+			else if (Input.IsActionPressed("walk"))
+			{
+				velocity = direction * stealthSpeed;
+			}
+            else if (Input.IsActionPressed("hide"))
+            {
+                velocity = Vector2.Zero;
+				GD.Print("i am hide ");
+            }
+            else
+			{
+				velocity = direction * Speed;
+			}
 		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+        else
+
+        {
+			velocity =Vector2.Zero;
 		}
 		
 		Velocity = velocity;
