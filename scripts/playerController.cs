@@ -24,6 +24,8 @@ public partial class playerController : CharacterBody2D
 
     public double oneSecond = 1f;
 
+	[Export]
+	public bool hiding = false;
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -42,6 +44,7 @@ public partial class playerController : CharacterBody2D
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		if (direction != Vector2.Zero)
 		{
+			//on sprint que si la stamina n'est pas null
 			if (Input.IsActionPressed("sprint") && stamina > 0)
 			{
 				velocity = direction * sprintSpeed ;
@@ -54,16 +57,19 @@ public partial class playerController : CharacterBody2D
 				{
 					oneSecond -= delta;
 				}
+				// on affiche l'etat de la stamina dans le teminal
 				GD.Print(" stamina : " + stamina + " / " + staminaMax);
 			}
+			// si on presse la touche de marche on change la vitesse de deplacement par celle de la marche
 			else if (Input.IsActionPressed("walk"))
 			{
 				velocity = direction * stealthSpeed;
 			}
-            else if (Input.IsActionPressed("hide"))
+			// si caché ne se deplace pas 
+            else if (hiding)
             {
                 velocity = Vector2.Zero;
-				GD.Print("i am hide ");
+				//GD.Print("i am hide ");
             }
             else
 			{
@@ -75,6 +81,9 @@ public partial class playerController : CharacterBody2D
         {
 			velocity =Vector2.Zero;
 		}
+
+		// gestion recuperation de la stamina une fois arrivé a zero
+		// a ameliorer pour la restauré dés que le joueur ne cours plus 
 		if(stamina<=0)
 		{
 			if(timeToRecupStamina - delta < 0)
@@ -92,5 +101,18 @@ public partial class playerController : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+
+		
 	}
+
+    public override void _Input(InputEvent @event)
+    {
+		//gere l'input de "hide" et change l'etat du bool 
+        if (@event.IsActionPressed("hide"))
+        {
+            hiding = !hiding;
+        }
+    }
+
+
 }
