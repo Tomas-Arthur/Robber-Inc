@@ -11,9 +11,19 @@ public partial class playerController : CharacterBody2D
     public float stealthSpeed = 150f;
 
 	[Export]
-	public int stamina = 1000;
+	public double stamina = 1000f;
 	[Export]
-	public int staminaMax = 1000;
+	public double staminaMax = 1000;
+
+	[Export]
+	public double staminaLostPerSecond;
+	[Export]
+	public double timeToRecupStamina;
+	[Export]
+	public double timeToRecupStaminaMax;
+
+    public double oneSecond = 1f;
+
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -34,7 +44,16 @@ public partial class playerController : CharacterBody2D
 		{
 			if (Input.IsActionPressed("sprint") && stamina > 0)
 			{
-				velocity = direction * sprintSpeed;
+				velocity = direction * sprintSpeed ;
+				if(oneSecond - delta < 0)
+				{
+					stamina -= staminaLostPerSecond;
+					oneSecond = 1;
+				}
+				else
+				{
+					oneSecond -= delta;
+				}
 				GD.Print(" stamina : " + stamina + " / " + staminaMax);
 			}
 			else if (Input.IsActionPressed("walk"))
@@ -48,7 +67,7 @@ public partial class playerController : CharacterBody2D
             }
             else
 			{
-				velocity = direction * Speed;
+				velocity = direction * Speed ;
 			}
 		}
         else
@@ -56,7 +75,21 @@ public partial class playerController : CharacterBody2D
         {
 			velocity =Vector2.Zero;
 		}
-		
+		if(stamina<=0)
+		{
+			if(timeToRecupStamina - delta < 0)
+			{
+				stamina = staminaMax;
+				timeToRecupStamina = timeToRecupStaminaMax;
+				GD.Print("stamina recovered");
+            }
+			else
+			{
+				timeToRecupStamina -= delta;
+
+            }
+		}
+
 		Velocity = velocity;
 		MoveAndSlide();
 	}

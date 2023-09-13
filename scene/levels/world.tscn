@@ -15,3 +15,7 @@ position = Vector2(1525, 915)
 zoom = Vector2(0.32, 0.32)
 
 [node name="player" parent="." instance=ExtResource("2_fluuv")]
+stamina = 100.0
+staminaLostPerSecond = 10.0
+timeToRecupStamina = 5.0
+timeToRecupStaminaMax = 5.0
