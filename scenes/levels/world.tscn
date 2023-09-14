@@ -1,18 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb1mmr4y12svr"]
+[gd_scene load_steps=3 format=3 uid="uid://chpvlcc86s5cn"]
 
-[ext_resource type="Texture2D" uid="uid://4c7d3nviw2q6" path="res://icon.svg" id="1_ubbls"]
-[ext_resource type="PackedScene" uid="uid://8nyswsyvviqb" path="res://scenes/player.tscn" id="2_1nvis"]
+[ext_resource type="Texture2D" uid="uid://dmae84q7jt1lb" path="res://icon.svg" id="1_q64o8"]
+[ext_resource type="PackedScene" uid="uid://7ikd1h21tg6" path="res://scenes/player.tscn" id="2_oi8wr"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(404, 242)
-scale = Vector2(7.3125, 4.78125)
-texture = ExtResource("1_ubbls")
+position = Vector2(-8.99997, -8.99998)
+scale = Vector2(9.21875, 5.23438)
+texture = ExtResource("1_q64o8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(418, 242)
-zoom = Vector2(1.145, 1.145)
 
-[node name="Node2D" parent="." instance=ExtResource("2_1nvis")]
-scale = Vector2(0.205, 0.205)
+[node name="Node2D" parent="." instance=ExtResource("2_oi8wr")]
+position = Vector2(-8.99997, -8.99998)
+scale = Vector2(1, 0.568)
