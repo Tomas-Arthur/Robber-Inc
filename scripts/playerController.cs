@@ -148,6 +148,7 @@ public partial class playerController : CharacterBody2D
         {
             hiding = !hiding;
         }
+		//GD.Print();
     }
 
 
