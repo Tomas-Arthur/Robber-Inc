@@ -3,8 +3,31 @@ using System;
 
 public partial class playerController : CharacterBody2D
 {
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	[Export]
+	public float Speed = 300f;
+	[Export]
+	public float sprintSpeed = 600f;
+	[Export]
+	public float stealthSpeed = 150f;
+
+	[Export]
+	public double stamina = 100;
+	[Export]
+	public	double staminaMax = 100;
+
+	[Export]
+	public double staminaLostPerSecond ;
+	[Export]
+	public double timeToRecupStamina ;
+	[Export]
+	public double timeToRecupStaminaMax ;
+
+	public double oneSecond = 1;
+	public double twoSecond = 2;
+
+	[Export]
+	public bool hiding = false;
+
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -13,13 +36,7 @@ public partial class playerController : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 
-		// Add the gravity.
-		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
-
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-			velocity.Y = JumpVelocity;
+		
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
