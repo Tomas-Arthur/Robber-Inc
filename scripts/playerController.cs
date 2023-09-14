@@ -35,5 +35,6 @@ public partial class playerController : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+		GD.Print("test");
 	}
 }
