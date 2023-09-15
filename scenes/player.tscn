@@ -8,6 +8,9 @@ radius = 248.727
 
 [node name="Node2D" type="CharacterBody2D"]
 script = ExtResource("1_nthcb")
+Speed = 1000.0
+sprintSpeed = 2000.0
+stealthSpeed = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0qnqm")

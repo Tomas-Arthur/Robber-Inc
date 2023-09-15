@@ -15,3 +15,12 @@ texture = ExtResource("1_q64o8")
 [node name="Node2D" parent="." instance=ExtResource("2_oi8wr")]
 position = Vector2(-8.99997, -8.99998)
 scale = Vector2(1, 0.568)
+Speed = 300.0
+sprintSpeed = 600.0
+stealthSpeed = 150.0
+stamina = 100.0
+staminaMax = 100.0
+staminaLostPerSecond = 10.0
+timeToRecupStamina = 5.0
+timeToRecupStaminaMax = 5.0
+staminaRecoveredBySecond = 10.0
