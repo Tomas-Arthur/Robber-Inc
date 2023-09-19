@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8g7kpimqqifg"]
+
+[ext_resource type="Texture2D" uid="uid://ecoup8t5eb1g" path="res://tertures/tileMap/craftpix-551899-free-zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall4_7.png" id="1_etcof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acbf5"]
+size = Vector2(125, 36)
+
+[node name="Node2D" type="StaticBody2D"]
+scale = Vector2(2.45775, 2.2558)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -45)
+shape = SubResource("RectangleShape2D_acbf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_etcof")

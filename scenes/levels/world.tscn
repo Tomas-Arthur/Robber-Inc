@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://chpvlcc86s5cn"]
+[gd_scene load_steps=5 format=3 uid="uid://chpvlcc86s5cn"]
 
 [ext_resource type="Texture2D" uid="uid://dmae84q7jt1lb" path="res://icon.svg" id="1_q64o8"]
 [ext_resource type="PackedScene" uid="uid://7ikd1h21tg6" path="res://scenes/player.tscn" id="2_oi8wr"]
+[ext_resource type="PackedScene" uid="uid://dqxy4pgb6byl2" path="res://scenes/floor.tscn" id="3_1l1r8"]
+[ext_resource type="PackedScene" uid="uid://b8g7kpimqqifg" path="res://scenes/wall.tscn" id="4_tgy61"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,8 +14,12 @@ texture = ExtResource("1_q64o8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Node2D" parent="." instance=ExtResource("2_oi8wr")]
-position = Vector2(-8.99997, -8.99998)
+[node name="Node2D" parent="." instance=ExtResource("3_1l1r8")]
+position = Vector2(186, -126)
+scale = Vector2(1, 1.96)
+
+[node name="player" parent="." instance=ExtResource("2_oi8wr")]
+position = Vector2(-315, -165)
 scale = Vector2(1, 0.568)
 Speed = 300.0
 sprintSpeed = 600.0
@@ -24,3 +30,5 @@ staminaLostPerSecond = 10.0
 timeToRecupStamina = 5.0
 timeToRecupStaminaMax = 5.0
 staminaRecoveredBySecond = 10.0
+
+[node name="Node2D2" parent="." instance=ExtResource("4_tgy61")]
