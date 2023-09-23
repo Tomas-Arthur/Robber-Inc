@@ -97,7 +97,7 @@ public partial class playerController : CharacterBody2D
 			{
 				stamina = staminaMax;
 				timeToRecupStamina = timeToRecupStaminaMax;
-				GD.Print("stamina recovered");
+				//GD.Print("stamina recovered");
 			}
 			else
 			{

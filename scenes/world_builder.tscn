@@ -27,3 +27,4 @@ scale = Vector2(39.0945, 40.0298)
 
 [node name="buildManager" type="Node2D" parent="."]
 script = ExtResource("3_s6diy")
+listScene = PackedStringArray("res://scenes/wall.tscn", "res://scenes/floor.tscn")
