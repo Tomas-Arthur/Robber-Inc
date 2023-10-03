@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://by6epyqf6uae3"]
+[gd_scene load_steps=6 format=3 uid="uid://by6epyqf6uae3"]
 
 [ext_resource type="Texture2D" uid="uid://dmae84q7jt1lb" path="res://icon.svg" id="1_j4np7"]
+[ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_ragul"]
 [ext_resource type="PackedScene" uid="uid://7ikd1h21tg6" path="res://scenes/player.tscn" id="2_2d8j3"]
 [ext_resource type="PackedScene" uid="uid://biapsc8fb1jio" path="res://scenes/inventory_gui.tscn" id="2_pcwh6"]
 [ext_resource type="Script" path="res://scripts/buildManager.cs" id="3_s6diy"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_ragul")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2741, 986.5)

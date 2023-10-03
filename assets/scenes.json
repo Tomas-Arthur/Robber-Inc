@@ -1,0 +1,12 @@
+{
+	"wall": {
+		"name": "wall",
+		"icon": "assets/wall.png",
+		"scene": "scenes/wall.tscn"
+	},
+	"floor": {
+		"name": "floor",
+		"icon": "assets/floor.png",
+		"scene": "scenes/floor.tscn"
+	}
+}
