@@ -1,13 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://by6epyqf6uae3"]
 
 [ext_resource type="Texture2D" uid="uid://dmae84q7jt1lb" path="res://icon.svg" id="1_j4np7"]
-[ext_resource type="Script" path="res://scripts/gameManager.cs" id="1_ragul"]
 [ext_resource type="PackedScene" uid="uid://7ikd1h21tg6" path="res://scenes/player.tscn" id="2_2d8j3"]
-[ext_resource type="PackedScene" uid="uid://biapsc8fb1jio" path="res://scenes/inventory_gui.tscn" id="2_pcwh6"]
+[ext_resource type="PackedScene" uid="uid://wsytov2mux1l" path="res://assets/ui/build_inventory.tscn" id="3_ldk3t"]
 [ext_resource type="Script" path="res://scripts/buildManager.cs" id="3_s6diy"]
+[ext_resource type="PackedScene" uid="uid://0mxvrokr73rv" path="res://assets/ui/item_slot.tscn" id="4_54b2l"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_ragul")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2741, 986.5)
@@ -18,15 +17,22 @@ texture = ExtResource("1_j4np7")
 position = Vector2(2607, 899)
 zoom = Vector2(0.085, 0.085)
 
+[node name="Control" parent="Camera2D" instance=ExtResource("3_ldk3t")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -6484.0
+offset_top = -3493.0
+offset_right = -5644.0
+offset_bottom = -2653.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(5, 5)
+
 [node name="Node2D2" parent="." instance=ExtResource("2_2d8j3")]
 
-[node name="Node2D" parent="." instance=ExtResource("2_pcwh6")]
-offset_left = -3943.0
-offset_top = -2776.0
-offset_right = -3907.0
-offset_bottom = -2741.0
-scale = Vector2(39.0945, 40.0298)
-
-[node name="buildManager" type="Node2D" parent="."]
+[node name="buildManager" type="Node2D" parent="." node_paths=PackedStringArray("buildInventory")]
 script = ExtResource("3_s6diy")
 listScene = PackedStringArray("res://scenes/wall.tscn", "res://scenes/floor.tscn")
+buildInventory = NodePath("../Camera2D/Control")
+colorRect = ExtResource("4_54b2l")

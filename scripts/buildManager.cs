@@ -8,11 +8,35 @@ public partial class buildManager : Node
     [Export]
     public String[] listScene ;
     public int a = 0;
-
+    [Export]
+    public GridContainer buildInventory;
+    [Export]
+    public PackedScene colorRect;
+    
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+        
 
+        for(int i = 0; i < gameManager.nbItemInBuilder; i++) 
+        {
+
+            Node instance = colorRect.Instantiate();
+            buildInventory.AddChild(instance);
+           // GD.Print(gameManager.scenesArray[i,1]);
+           
+           TextureRect getTextureRect = instance.GetNode<TextureRect>("ItemIcon");
+            GD.Print(gameManager.scenesArray[i, 1]);
+            Texture2D texture = ImageTexture.CreateFromImage(Image.LoadFromFile(gameManager.scenesArray[i, 1]));
+            getTextureRect.Texture = texture;
+           // Texture2D newTexture = GD.Load<Texture2D>(gameManager.scenesArray[i, 1]);
+           // getTextureRect.Texture =  newTexture;
+           
+
+
+
+           
+        }
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
