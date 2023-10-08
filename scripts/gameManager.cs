@@ -9,10 +9,15 @@ public partial class gameManager : Node
 {
 	//tableau contenant tout les items du fichier json  
 	public static string[,] scenesArray;
+
+	//dictionaire contenant tout les irems du fichier json
+	public static Dictionary<string, string[]> scenesDictionary;
+
 	public static int nbItemInBuilder;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		scenesDictionary = new Dictionary<string, string[]>();
 		readAndStoreDataForLevelBuilder();
 
 	}
@@ -62,6 +67,7 @@ public partial class gameManager : Node
 								scenesArray[rowIndex, 1] = itemData["icon"].ToString();
 								scenesArray[rowIndex, 2] = itemData["scene"].ToString();
 								rowIndex++;
+								scenesDictionary.Add(itemData["name"].ToString(), new string[] { itemData["icon"].ToString(), itemData["scene"].ToString() });
 							}
 						}
 

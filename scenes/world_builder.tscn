@@ -1,17 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://by6epyqf6uae3"]
+[gd_scene load_steps=8 format=3 uid="uid://by6epyqf6uae3"]
 
 [ext_resource type="Texture2D" uid="uid://dmae84q7jt1lb" path="res://icon.svg" id="1_j4np7"]
 [ext_resource type="PackedScene" uid="uid://7ikd1h21tg6" path="res://scenes/player.tscn" id="2_2d8j3"]
+[ext_resource type="Script" path="res://scripts/buildAreaSrcipt.cs" id="2_agkin"]
 [ext_resource type="PackedScene" uid="uid://wsytov2mux1l" path="res://assets/ui/build_inventory.tscn" id="3_ldk3t"]
 [ext_resource type="Script" path="res://scripts/buildManager.cs" id="3_s6diy"]
 [ext_resource type="PackedScene" uid="uid://0mxvrokr73rv" path="res://assets/ui/item_slot.tscn" id="4_54b2l"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dspn0"]
+size = Vector2(127.756, 127.629)
+
 [node name="Node2D" type="Node2D"]
 
+[node name="Node2D2" parent="." instance=ExtResource("2_2d8j3")]
+z_index = 1
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2741, 986.5)
-scale = Vector2(100.047, 56.6641)
+position = Vector2(3365, 994.501)
+scale = Vector2(90.2969, 56.5391)
 texture = ExtResource("1_j4np7")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+script = ExtResource("2_agkin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(0.276817, -0.0619335)
+shape = SubResource("RectangleShape2D_dspn0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2607, 899)
@@ -21,18 +35,18 @@ zoom = Vector2(0.085, 0.085)
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -6484.0
+offset_left = -6692.0
 offset_top = -3493.0
-offset_right = -5644.0
-offset_bottom = -2653.0
+offset_right = -6376.0
+offset_bottom = -2067.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(5, 5)
 
-[node name="Node2D2" parent="." instance=ExtResource("2_2d8j3")]
-
-[node name="buildManager" type="Node2D" parent="." node_paths=PackedStringArray("buildInventory")]
+[node name="buildManager" type="Node2D" parent="." node_paths=PackedStringArray("buildInventory", "area")]
 script = ExtResource("3_s6diy")
-listScene = PackedStringArray("res://scenes/wall.tscn", "res://scenes/floor.tscn")
 buildInventory = NodePath("../Camera2D/Control")
 colorRect = ExtResource("4_54b2l")
+area = NodePath("..")
+
+[connection signal="input_event" from="Sprite2D/Area2D" to="Sprite2D/Area2D" method="_on_input_event"]
