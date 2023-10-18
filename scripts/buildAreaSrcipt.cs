@@ -15,12 +15,16 @@ public partial class buildAreaSrcipt : Node
 
 	private void _on_input_event(Node viewport, InputEvent @event, long shape_idx)
 	{
-		if (@event.IsActionPressed("left_click"))
-		{
-			buildManager.instanciateBlock(GetViewport().GetMousePosition());
-			//GD.Print(this);
+        if (@event is InputEventMouseButton mouseButtonEvent)
+        {
+            if (mouseButtonEvent.IsActionPressed("left_click"))
+            {
+                buildManager.instanciateBlock(mouseButtonEvent.Position);
+                
+                //GD.Print(this);
+            }
         }
-	}
+    }
 }
 
 

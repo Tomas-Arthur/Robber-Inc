@@ -11,7 +11,10 @@ public partial class buildManager : Node
     public GridContainer buildInventory;
     [Export]
     public PackedScene colorRect;
-
+    [Export]
+    public Camera2D camera2D;
+    public static Camera2D camera;
+    public static Vector2 cameraSize;
     [Export]
     public Node area;
     public static Node areaToSpawnBlock;
@@ -22,7 +25,8 @@ public partial class buildManager : Node
     public override void _Ready()
 	{
         areaToSpawnBlock = area;
-
+        camera = camera2D;
+       cameraSize = camera.GetViewportRect().Size;
         for (int i = 0; i < gameManager.nbItemInBuilder; i++) 
         {
 
@@ -100,15 +104,15 @@ public partial class buildManager : Node
         if (resourcesToInstanciate != "")
         {
             PackedScene ground;
-
+            Vector2 newMousePos = camera.GlobalTransform.Origin + (mousePos - cameraSize  / 2.0f) / camera.Zoom;
             GD.Print("left click try to instantiate a new node ");
             ground = (PackedScene)ResourceLoader.Load(resourcesToInstanciate);
             StaticBody2D newGround = (StaticBody2D)ground.Instantiate();
             
             areaToSpawnBlock.AddChild(newGround);
-            GD.Print(mousePos);
-            GD.Print(mousePos);
-            newGround.Position = mousePos;
+            GD.Print(newMousePos);
+            GD.Print(newMousePos);
+            newGround.Position = newMousePos;
           
         }
     }

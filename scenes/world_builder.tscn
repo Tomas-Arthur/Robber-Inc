@@ -43,10 +43,11 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(5, 5)
 
-[node name="buildManager" type="Node2D" parent="." node_paths=PackedStringArray("buildInventory", "area")]
+[node name="buildManager" type="Node2D" parent="." node_paths=PackedStringArray("buildInventory", "camera2D", "area")]
 script = ExtResource("3_s6diy")
 buildInventory = NodePath("../Camera2D/Control")
 colorRect = ExtResource("4_54b2l")
+camera2D = NodePath("../Camera2D")
 area = NodePath("..")
 
 [connection signal="input_event" from="Sprite2D/Area2D" to="Sprite2D/Area2D" method="_on_input_event"]
