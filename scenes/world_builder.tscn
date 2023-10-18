@@ -38,7 +38,7 @@ anchor_bottom = 0.0
 offset_left = -6692.0
 offset_top = -3493.0
 offset_right = -6376.0
-offset_bottom = -2067.0
+offset_bottom = -2806.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(5, 5)
@@ -50,4 +50,13 @@ colorRect = ExtResource("4_54b2l")
 camera2D = NodePath("../Camera2D")
 area = NodePath("..")
 
+[node name="Button" type="Button" parent="."]
+offset_left = -4088.0
+offset_top = 3844.0
+offset_right = -3160.0
+offset_bottom = 4323.0
+theme_override_font_sizes/font_size = 300
+text = "SAVE"
+
 [connection signal="input_event" from="Sprite2D/Area2D" to="Sprite2D/Area2D" method="_on_input_event"]
+[connection signal="pressed" from="Button" to="buildManager" method="_on_button_pressed"]
